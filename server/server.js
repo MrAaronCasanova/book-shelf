@@ -10,11 +10,30 @@ mongoose.connect(config.DATABASE);
 
 const User = require('./models/user');
 const Book = require('./models/book');
+const auth = require('./middleware/auth');
 
 app.use(bodyParser.json());
 app.use(cookieParser());
 
 // ------ GET ------ //
+// Get Auth Check
+app.get('/api/auth', auth, (req, res) => {
+  res.json({
+    isAuth: true,
+    id: req.user._id,
+    email: req.user.email,
+    firstname: req.user.firstname,
+    lastname: req.user.lastname
+  });
+});
+
+app.get('/api/logout', auth, (req, res) => {
+  req.user.deleteToken(req.token, (err, user) => {
+    if (err) return res.status(400).send(err);
+    res.sendStatus(200);
+  });
+});
+
 // Get One Book
 app.get('/api/book', (req, res) => {
   let id = req.query.id;
@@ -58,6 +77,14 @@ app.get('/api/users', (req, res) => {
   User.find({}, (err, users) => {
     if (err) return res.status(400).send(err);
     res.status(200).json({ users });
+  });
+});
+
+// Get User/Reviewer's Posts
+app.get('/api/user_posts', (req, res) => {
+  Book.find({ ownerId: req.query.user }).exec((err, docs) => {
+    if (err) return res.status(400).send(err);
+    res.send(docs);
   });
 });
 
