@@ -45,3 +45,16 @@ export function clearBookWithReviewer() {
     }
   };
 }
+
+// * --------- User --------- * //
+
+export function loginUser({ email, password }) {
+  const request = axios
+    .post('/api/login', { email, password })
+    .then(res => res.data);
+
+  return {
+    type: 'USER_LOGIN',
+    payload: request
+  };
+}
