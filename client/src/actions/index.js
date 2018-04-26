@@ -46,6 +46,22 @@ export function clearBookWithReviewer() {
   };
 }
 
+export function addBook(book) {
+  const request = axios.post('/api/book', book).then(res => res.data);
+
+  return {
+    type: 'ADD_BOOK',
+    payload: request
+  };
+}
+
+export function clearNewBook() {
+  return {
+    type: 'CLEAR_NEW_BOOK',
+    payload: {}
+  };
+}
+
 // * --------- User --------- * //
 
 export function loginUser({ email, password }) {
@@ -55,6 +71,14 @@ export function loginUser({ email, password }) {
 
   return {
     type: 'USER_LOGIN',
+    payload: request
+  };
+}
+
+export function auth() {
+  const request = axios.get('/api/auth').then(res => res.data);
+  return {
+    type: 'USER_AUTH',
     payload: request
   };
 }
