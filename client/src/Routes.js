@@ -20,7 +20,7 @@ const Routes = () => {
         <Route exact path="/user" component={Auth(User, true)} />
         <Route exact path="/user/add" component={Auth(AddBook, true)} />
         <Route exact path="/books/:id" component={Auth(BookView, null)} />
-        <Route exact path="/user-reviews" component={Auth(UserPosts, true)} />
+        <Route exact path="/user/reviews" component={Auth(UserPosts, true)} />
       </Switch>
     </Layout>
   );

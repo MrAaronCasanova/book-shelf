@@ -62,6 +62,16 @@ export function clearNewBook() {
   };
 }
 
+export function getUserPosts(userId) {
+  const request = axios
+    .get(`/api/user_posts?user=${userId}`)
+    .then(res => res.data);
+  return {
+    type: 'GET_USER_POSTS',
+    payload: request
+  };
+}
+
 // * --------- User --------- * //
 
 export function loginUser({ email, password }) {
