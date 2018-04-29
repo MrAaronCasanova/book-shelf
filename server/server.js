@@ -142,7 +142,7 @@ app.post('/api/login', (req, res) => {
 
 // ------ UPDATE ------ //
 // Update One Book
-app.post('/api/book_update', (req, res) => {
+app.post('/api/update_book', (req, res) => {
   Book.findByIdAndUpdate(req.body._id, req.body, { new: true }, (err, doc) => {
     if (err) return res.status(400).send(err);
     res.json({

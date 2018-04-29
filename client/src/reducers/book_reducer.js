@@ -5,6 +5,11 @@ export default function(state = {}, action) {
         ...state,
         list: action.payload
       };
+    case 'GET_BOOK':
+      return {
+        ...state,
+        book: action.payload
+      };
     case 'GET_BOOK_W_REVIEWER':
       return {
         ...state,
@@ -26,6 +31,24 @@ export default function(state = {}, action) {
       return {
         ...state,
         newBook: action.payload
+      };
+    case 'UPDATE_BOOK':
+      return {
+        ...state,
+        updateBook: action.payload.success,
+        book: action.payload.doc
+      };
+    case 'DELETE_BOOK':
+      return {
+        ...state,
+        postDeleted: action.payload
+      };
+    case 'CLEAR_BOOK':
+      return {
+        ...state,
+        book: action.payload.book,
+        updateBook: action.payload.updateBook,
+        postDeleted: action.payload.postDeleted
       };
     default:
       return state;

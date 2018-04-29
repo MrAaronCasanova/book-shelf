@@ -72,6 +72,43 @@ export function getUserPosts(userId) {
   };
 }
 
+export function getBook(id) {
+  const request = axios.get(`/api/book?id=${id}`).then(res => res.data);
+  return {
+    type: 'GET_BOOK',
+    payload: request
+  };
+}
+
+export function updateBook(data) {
+  const request = axios.post(`/api/update_book`, data).then(res => res.data);
+  return {
+    type: 'UPDATE_BOOK',
+    payload: request
+  };
+}
+
+export function deleteBook(id) {
+  const request = axios
+    .delete(`/api/delete_book?id=${id}`)
+    .then(res => res.data);
+  return {
+    type: 'DELETE_BOOK',
+    payload: request
+  };
+}
+
+export function clearBook() {
+  return {
+    type: 'CLEAR_BOOK',
+    payload: {
+      book: null,
+      updateBook: false,
+      postDeleted: false
+    }
+  };
+}
+
 // * --------- User --------- * //
 
 export function loginUser({ email, password }) {

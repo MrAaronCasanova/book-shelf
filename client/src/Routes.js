@@ -6,6 +6,7 @@ import BookView from './components/books';
 import Login from './containers/admin/Login';
 import User from './components/admin';
 import AddBook from './containers/admin/AddBook';
+import EditBook from './containers/admin/EditBook';
 import UserPosts from './components/admin/UserPosts';
 
 import Layout from './hoc/Layout';
@@ -19,6 +20,11 @@ const Routes = () => {
         <Route exact path="/login" component={Auth(Login, false)} />
         <Route exact path="/user" component={Auth(User, true)} />
         <Route exact path="/user/add" component={Auth(AddBook, true)} />
+        <Route
+          exact
+          path="/user/edit-post/:id"
+          component={Auth(EditBook, true)}
+        />
         <Route exact path="/books/:id" component={Auth(BookView, null)} />
         <Route exact path="/user/reviews" component={Auth(UserPosts, true)} />
       </Switch>
