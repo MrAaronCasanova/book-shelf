@@ -15,6 +15,17 @@ export default function(state = {}, action) {
         ...state,
         userPosts: action.payload
       };
+    case 'GET_USERS':
+      return {
+        ...state,
+        users: action.payload.users
+      };
+    case 'REGISTER_USER':
+      return {
+        ...state,
+        register: action.payload.success,
+        users: action.payload.users
+      };
     default:
       return state;
   }

@@ -129,3 +129,27 @@ export function auth() {
     payload: request
   };
 }
+
+export function getUsers() {
+  const request = axios.get('/api/users').then(res => res.data);
+  return {
+    type: 'GET_USERS',
+    payload: request
+  };
+}
+
+export function registerUser(user, userList) {
+  const request = axios.post('/api/register', user);
+  return dispatch => {
+    request.then(({ data }) => {
+      let response = {
+        success: data.success,
+        users: [...userList, data.user]
+      };
+      dispatch({
+        type: 'REGISTER_USER',
+        payload: response
+      });
+    });
+  };
+}
