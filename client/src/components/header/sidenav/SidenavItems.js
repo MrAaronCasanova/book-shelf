@@ -1,7 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router-dom';
-import { loginUser } from '../../../actions';
 import { connect } from 'react-redux';
 
 const SidenavItems = ({ user }) => {
